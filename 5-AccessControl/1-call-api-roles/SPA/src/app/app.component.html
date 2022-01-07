@@ -1,21 +1,34 @@
-<mat-toolbar color="primary">
+<div class="login-page" *ngIf="!loginDisplay">
+  <!-- <img class="background-image" *ngIf="!loginDisplay">
+  <div class="bg-image-mask" *ngIf="!loginDisplay"></div> -->
+
+  <mat-card class="card-section" *ngIf="!loginDisplay">
+    <mat-card-title>Sign-in with Microsoft Azure AD</mat-card-title>
+    <mat-card-subtitle>Getting an access token with Azure AD and calling a ASP.NET Core Web API</mat-card-subtitle>
+    <mat-card-content>This simple sample demonstrates the Microsoft Authentication Library for Angular (MSAL
+    Angular) to get an access token and call a ASP.NET Core Web API secured by Azure AD.</mat-card-content>
+  </mat-card>
+  <div class="login-button-div" *ngIf="!loginDisplay">
+    <a href="#" (click)="login()">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Sign In
+    </a>
+  </div>
+</div>
+
+<mat-toolbar color="primary" *ngIf="loginDisplay">
   <a class="title" [routerLink]="['/']">{{ title }}</a>
 
-  <div class="toolbar-spacer"></div>
+  <div class="toolbar-spacer" *ngIf="loginDisplay"></div>
 
-  <button mat-raised-button *ngIf="!loginDisplay" (click)="login()">Login</button>
+  <!-- <button mat-raised-button *ngIf="!loginDisplay" (click)="login()">Login</button> -->
   <button mat-raised-button color="accent" *ngIf="loginDisplay" (click)="logout()">Logout</button>
 </mat-toolbar>
 
-<div class="container">
+<div class="container" *ngIf="loginDisplay">
   <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
   <router-outlet *ngIf="!isIframe"></router-outlet>
 </div>
-
-<footer *ngIf="loginDisplay">
-  <mat-toolbar>
-    <div class="footer-text">
-      How did we do? <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR73pcsbpbxNJuZCMKN0lURpUOU5PNlM4MzRRV0lETkk2ODBPT0NBTEY5MCQlQCN0PWcu" target="_blank"> Share your experience with us!</a>
-    </div>
-  </mat-toolbar>
-</footer>

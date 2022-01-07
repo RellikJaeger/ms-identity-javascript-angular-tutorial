@@ -10,7 +10,7 @@ import { filter, takeUntil } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'Hello Future';
+  title = 'Welcome!';
   isIframe = false;
   loginDisplay = false;
   
